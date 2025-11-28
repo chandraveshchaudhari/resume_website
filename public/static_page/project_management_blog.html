@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Management Mastery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --text: #1e293b;
+      --primary: #4f46e5;
+      --accent: #7c3aed;
+      --card: #ffffff;
+      --border: #cbd5e1;
+      --progress: #4f46e5;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+    body.dark {
+      --bg: #020617;
+      --text: #e2e8f0;
+      --primary: #6366f1;
+      --accent: #a78bfa;
+      --card: rgba(30, 41, 59, 0.95);
+      --border: #334155;
+      --progress: #6366f1;
+      --success: #34d399;
+      --warning: #fbbf24;
+      --danger: #f87171;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      position: relative;
+      /* smooth color/background transitions when toggling theme */
+      transition: background-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.03;
+    }
+    
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      animation: float 20s infinite ease-in-out;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      25% { transform: translate(100px, 100px) rotate(90deg); }
+      50% { transform: translate(0, 200px) rotate(180deg); }
+      75% { transform: translate(-100px, 100px) rotate(270deg); }
+    }
+
+    /* Slide Layout */
+    .slides-container { 
+      position: relative; 
+      width: 100%; 
+      height: 100vh; 
+      overflow: hidden; 
+      /* ensure bottom UI (fixed nav) doesn't cover slide content */
+      padding-bottom: 8rem;
+    }
+    
+    .slide {
+      position: absolute; 
+      width: 100%; 
+      height: 100%;
+      padding: 4rem 5rem; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center;
+      justify-content: center; 
+      opacity: 0; 
+      visibility: hidden; 
+      text-align: center;
+      transform: scale(0.9);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .slide.active { 
+      opacity: 1; 
+      visibility: visible; 
+      transform: scale(1);
+    }
+
+    h1 { 
+      font-size: 4.5rem; 
+      font-weight: 800; 
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent;
+      animation: titlePulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes titlePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    
+    h2 { 
+      font-size: 3rem; 
+      color: var(--primary); 
+      margin-bottom: 2rem;
+      animation: slideInDown 0.8s ease-out;
+    }
+    
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    p, li { 
+      font-size: 1.4rem; 
+      line-height: 1.8; 
+      max-width: 1000px; 
+    }
+
+    /* Enhanced Cards */
+    .grid {
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem; 
+      margin: 2.5rem auto; 
+      max-width: 1200px;
+      width: 100%;
+    }
+    
+    .card {
+      background: var(--card); 
+      border: 2px solid var(--border);
+      border-radius: 20px; 
+      padding: 2rem; 
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+    
+    .card:hover::before {
+      left: 100%;
+    }
+    
+    .card:hover { 
+      transform: translateY(-10px) scale(1.02); 
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      border-color: var(--primary);
+    }
+    
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .card strong {
+      font-size: 1.5rem;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    /* Quote Box */
+    .quote {
+      font-size: 1.6rem; 
+      padding: 2rem; 
+      border-left: 8px solid var(--primary);
+      background: var(--card); 
+      margin-top: 2rem; 
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: fadeInUp 1s ease-out;
+      position: relative;
+    }
+    
+    .quote::before {
+      content: '"';
+      font-size: 5rem;
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      color: var(--primary);
+      opacity: 0.3;
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 2rem auto;
+    }
+    
+    .timeline-item {
+      display: flex;
+      align-items: center;
+      margin: 1.5rem 0;
+      gap: 2rem;
+      animation: slideInLeft 0.8s ease-out backwards;
+    }
+    
+    .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+    .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+    .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .timeline-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .timeline-content {
+      background: var(--card);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 2px solid var(--border);
+      flex: 1;
+      transition: all 0.3s;
+    }
+    
+    .timeline-content:hover {
+      transform: translateX(10px);
+      border-color: var(--primary);
+    }
+
+    /* Comparison Table */
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+    }
+    
+    .comparison-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem;
+      transition: all 0.4s;
+      animation: zoomIn 0.8s ease-out;
+    }
+    
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    .comparison-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    }
+    
+    .comparison-card h3 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+    
+    .comparison-card ul {
+      list-style: none;
+      text-align: left;
+    }
+    
+    .comparison-card li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .comparison-card li:before {
+      content: '✓';
+      color: var(--success);
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    /* Tool Cards */
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+    }
+    
+    .tool-card {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+      animation: popIn 0.6s ease-out backwards;
+    }
+    
+    .tool-card:nth-child(1) { animation-delay: 0.1s; }
+    .tool-card:nth-child(2) { animation-delay: 0.2s; }
+    .tool-card:nth-child(3) { animation-delay: 0.3s; }
+    .tool-card:nth-child(4) { animation-delay: 0.4s; }
+    .tool-card:nth-child(5) { animation-delay: 0.5s; }
+    .tool-card:nth-child(6) { animation-delay: 0.6s; }
+    
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+      to { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+    
+    .tool-card:hover {
+      transform: translateY(-8px) rotate(2deg);
+      border-color: var(--primary);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .tool-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--border);
+      z-index: 1000;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 0.3s ease;
+      box-shadow: 0 0 10px var(--primary);
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed; 
+      bottom: 2rem; 
+      left: 50%; 
+      transform: translateX(-50%);
+      background: var(--card); 
+      padding: 1rem 2.5rem; 
+      border-radius: 50px;
+      border: 2px solid var(--border); 
+      display: flex; 
+      align-items: center; 
+      gap: 2rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+      z-index: 1002; /* sit above content but below modals */
+    }
+    
+    .nav button {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border: none; 
+      color: white;
+      font-size: 1.4rem; 
+      cursor: pointer; 
+      width: 50px; 
+      height: 50px;
+      border-radius: 50%; 
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .nav button:hover { 
+      transform: scale(1.15);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    
+    .nav button:active {
+      transform: scale(0.95);
+    }
+    
+    #counter {
+      font-weight: 600;
+      font-size: 1.2rem;
+      min-width: 80px;
+    }
+
+    /* Theme Toggle */
+    #themeToggle {
+      position: fixed; 
+      top: 1.5rem; 
+      right: 2rem;
+      padding: 0.8rem 1.5rem; 
+      cursor: pointer;
+      background: var(--card); 
+      border-radius: 50px; 
+      border: 2px solid var(--border);
+      font-size: 1.1rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    #themeToggle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    /* Stats Box */
+    .stats {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .stat-box {
+      background: var(--card);
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 3rem;
+      text-align: center;
+      min-width: 180px;
+      animation: flipIn 0.8s ease-out backwards;
+    }
+    
+    .stat-box:nth-child(1) { animation-delay: 0.1s; }
+    .stat-box:nth-child(2) { animation-delay: 0.2s; }
+    .stat-box:nth-child(3) { animation-delay: 0.3s; }
+    
+    @keyframes flipIn {
+      from { opacity: 0; transform: rotateY(90deg); }
+      to { opacity: 1; transform: rotateY(0); }
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 1.1rem;
+      color: var(--text);
+      opacity: 0.8;
+    }
+
+    /* List Styles */
+    ul {
+      text-align: left;
+      margin-top: 2rem;
+      max-width: 800px;
+    }
+    
+    ul li {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      animation: slideInRight 0.6s ease-out backwards;
+    }
+    
+    ul li:nth-child(1) { animation-delay: 0.1s; }
+    ul li:nth-child(2) { animation-delay: 0.2s; }
+    ul li:nth-child(3) { animation-delay: 0.3s; }
+    ul li:nth-child(4) { animation-delay: 0.4s; }
+    ul li:nth-child(5) { animation-delay: 0.5s; }
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Lottie Animation Container */
+    lottie-player {
+      width: 300px;
+      height: 300px;
+      margin: 2rem auto;
+    }
+
+    @media (max-width: 768px) {
+      .slide { padding: 2rem 1.5rem; }
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; }
+      p, li { font-size: 1.1rem; }
+      .grid { grid-template-columns: 1fr; }
+      .comparison { grid-template-columns: 1fr; }
+      /* reduce bottom padding on small screens so content still fits */
+      .slides-container { padding-bottom: 6rem; }
+      .nav { bottom: 1rem; padding: 0.6rem 1.2rem; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-container">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="bg-animation">
+  <div class="floating-shape" style="width:400px;height:400px;top:10%;left:10%;animation-delay:0s;"></div>
+  <div class="floating-shape" style="width:300px;height:300px;top:50%;right:10%;animation-delay:5s;"></div>
+  <div class="floating-shape" style="width:200px;height:200px;bottom:10%;left:40%;animation-delay:10s;"></div>
+</div>
+
+<!-- theme toggle removed to avoid confusing users when toggle is non-functional -->
+
+<div class="slides-container">
+
+  <!-- Slide 1: Intro -->
+  <section class="slide active">
+    <h1>🚀 Project Management Mastery</h1>
+    <p style="font-size:1.6rem;">Transform Ideas into Reality Through Strategic Planning & Flawless Execution</p>
+    <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_xlmz9xwm.json" background="transparent" loop autoplay style="width:350px;height:350px;"></lottie-player>
+    <p style="margin-top:2rem;"><strong>Designed for: CAPS Volunteers | Christ University</strong></p>
+  </section>
+
+  <!-- Slide 2: Why PM Matters -->
+  <section class="slide">
+    <h2>💡 Why Project Management Matters</h2>
+    <p style="font-size:1.5rem;margin-bottom:2rem;">The difference between chaos and success</p>
+    
+    <div class="grid">
+      <div class="card">
+        <span class="card-icon">❌</span>
+        <strong>Without PM</strong>
+        <p>Missed deadlines, confused teams, budget overruns, repeated mistakes, burnout</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">✅</span>
+        <strong>With PM</strong>
+        <p>Clear goals, empowered teams, on-time delivery, continuous improvement, sustainable success</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      "Good project management isn't about perfection—it's about progress, clarity, and learning from every experience."
+    </div>
+  </section>
+
+  <!-- Slide 3: PARA Framework -->
+  <section class="slide">
+    <h2>🧠 PARA Framework</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">Organize your digital life so nothing gets lost and every task is clear</p>
+
+    <div class="grid">
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <strong>Projects</strong>
+        <p>Short-term tasks with clear deadlines</p>
+        <p style="margin-top:1rem;font-style:italic;opacity:0.8;">Example: Organizing a cultural fest, launching a social media campaign</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔄</span>
+        <strong>Areas</strong>
+        <p>Ongoing responsibilities without end dates</p>
+        <p style="margin-top:1rem;font-style:italic;opacity:0.8;">Example: Managing club activities, maintaining relationships with sponsors</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📚</span>
+        <strong>Resources</strong>
+        <p>Reference materials & helpful information</p>
+        <p style="margin-top:1rem;font-style:italic;opacity:0.8;">Example: Brand guidelines, budget templates, contact databases</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📦</span>
+        <strong>Archives</strong>
+        <p>Completed projects & inactive materials</p>
+        <p style="margin-top:1rem;font-style:italic;opacity:0.8;">Example: Past event reports, old promotional materials</p>
+      </div>
+    </div>
+
+    <div class="quote">"A cluttered system wastes mental energy. PARA creates clarity and reduces decision fatigue."</div>
+  </section>
+
+  <!-- Slide 4: PPVOS Framework -->
+  <section class="slide">
+    <h2>⚙️ PPVOS Framework</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">How successful events actually work behind the scenes</p>
+    
+    <div class="grid">
+      <div class="card">
+        <span class="card-icon">🎯</span>
+        <strong>Purpose</strong>
+        <p>Why are we doing this? What's the impact?</p>
+        <p style="margin-top:1rem;opacity:0.8;">Define clear objectives & success metrics</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">👥</span>
+        <strong>People</strong>
+        <p>Who owns what? Clear roles avoid confusion</p>
+        <p style="margin-top:1rem;opacity:0.8;">Define responsibilities & decision-makers</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">👁️</span>
+        <strong>Visibility</strong>
+        <p>Everyone knows who's doing what & when</p>
+        <p style="margin-top:1rem;opacity:0.8;">Transparent tracking & regular updates</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚡</span>
+        <strong>Operations</strong>
+        <p>Smooth execution of day-to-day tasks</p>
+        <p style="margin-top:1rem;opacity:0.8;">Workflows, checklists & quality control</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔧</span>
+        <strong>Systems</strong>
+        <p>Tools, templates & repeatable processes</p>
+        <p style="margin-top:1rem;opacity:0.8;">Documentation that saves future teams time</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: Project Lifecycle -->
+  <section class="slide">
+    <h2>🔄 The 5-Stage Project Lifecycle</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">Every successful project follows this path</p>
+    
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-number">1</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Initiation</strong>
+          <p>Define objectives, identify stakeholders, assess feasibility, get approval</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-number">2</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Planning</strong>
+          <p>Create budget, assign roles, develop timeline, establish communication channels</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-number">3</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Execution</strong>
+          <p>Implement the plan, coordinate team activities, manage resources, maintain quality</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-number">4</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Monitoring</strong>
+          <p>Track progress, identify blockers, adjust course, ensure alignment with goals</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-number">5</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Closure</strong>
+          <p>Evaluate outcomes, document learnings, celebrate wins, archive knowledge</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">"The closure phase is often skipped—but it's where the real learning happens for future projects."</div>
+  </section>
+
+  <!-- Slide 6: Agile vs Waterfall -->
+  <section class="slide">
+    <h2>⚡ Agile vs. Waterfall</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">Choose the right methodology for your project type</p>
+    
+    <div class="comparison">
+      <div class="comparison-card">
+        <h3>🌊 Waterfall</h3>
+        <p style="margin-bottom:1.5rem;">Sequential, structured approach</p>
+        <ul>
+          <li>Fixed requirements upfront</li>
+          <li>Detailed planning phase</li>
+          <li>Linear progression</li>
+          <li>Formal documentation</li>
+          <li>Best for: Ceremonies, inaugurations, compliance events</li>
+        </ul>
+      </div>
+      
+      <div class="comparison-card">
+        <h3>🚀 Agile</h3>
+        <p style="margin-bottom:1.5rem;">Iterative, flexible approach</p>
+        <ul>
+          <li>Evolving requirements</li>
+          <li>Sprint-based cycles</li>
+          <li>Continuous feedback</li>
+          <li>Adaptive planning</li>
+          <li>Best for: Social media campaigns, creative projects</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote">"Most university events benefit from a hybrid approach—structure where needed, flexibility where valuable."</div>
+  </section>
+
+  <!-- Slide 7: Essential Tools -->
+  <section class="slide">
+    <h2>🧰 Essential Tools to Work Smarter</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">The right tools eliminate friction and boost productivity</p>
+    
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tool-icon">📋</div>
+        <strong>Notion / Trello</strong>
+        <p style="margin-top:0.8rem;">Visual task boards & project wikis</p>
+      </div>
+      
+      <div class="tool-card">
+        <div class="tool-icon">📊</div>
+        <strong>Google Sheets</strong>
+        <p style="margin-top:0.8rem;">Budget tracking & data analysis</p>
+      </div>
+      
+      <div class="tool-card">
+        <div class="tool-icon">📅</div>
+        <strong>Google Calendar</strong>
+        <p style="margin-top:0.8rem;">Scheduling & deadline management</p>
+      </div>
+      
+      <div class="tool-card">
+        <div class="tool-icon">🎨</div>
+        <strong>Canva</strong>
+        <p style="margin-top:0.8rem;">Quick posters & social media graphics</p>
+      </div>
+      
+      <div class="tool-card">
+        <div class="tool-icon">📝</div>
+        <strong>Google Forms</strong>
+        <p style="margin-top:0.8rem;">Registrations & feedback collection</p>
+      </div>
+      
+      <div class="tool-card">
+        <div class="tool-icon">💬</div>
+        <strong>Slack / Discord</strong>
+        <p style="margin-top:0.8rem;">Team communication & file sharing</p>
+      </div>
+    </div>
+
+    <div class="quote">"Don't get overwhelmed by tools—start with 3-4 essentials and master them before adding more."</div>
+  </section>
+
+  <!-- Slide 8: Communication Rules -->
+  <section class="slide">
+    <h2>💬 Communication That Actually Works</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">Clear channels prevent information overload and confusion</p>
+    
+    <div class="grid">
+      <div class="card">
+        <span class="card-icon">👔</span>
+        <strong>Core Team Channel</strong>
+        <p>Decisions, strategy, budget approvals</p>
+        <p style="margin-top:1rem;opacity:0.8;">Keep it focused—only critical discussions</p>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">🤝</span>
+        <strong>Volunteers Channel</strong>
+        <p>Daily coordination, task updates, questions</p>
+        <p style="margin-top:1rem;opacity:0.8;">Active collaboration space for execution</p>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">📢</span>
+        <strong>Announcements Channel</strong>
+        <p>One-way broadcasts, no replies</p>
+        <p style="margin-top:1rem;opacity:0.8;">Key dates, policy changes, celebrations</p>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">🆘</span>
+        <strong>Emergency Protocol</strong>
+        <p>Direct calls for urgent issues only</p>
+        <p style="margin-top:1rem;opacity:0.8;">Define what qualifies as "urgent"</p>
+      </div>
+    </div>
+
+    <ul style="margin-top:2rem;">
+      <li><strong>Response Time Expectations:</strong> Set clear guidelines (e.g., 2 hours for urgent, 24 hours for normal)</li>
+      <li><strong>Meeting Protocols:</strong> Always have an agenda, assign a note-taker, end with action items</li>
+      <li><strong>Documentation:</strong> If it's not written down, it didn't happen</li>
+    </ul>
+  </section>
+
+  <!-- Slide 9: Risk Management -->
+  <section class="slide">
+    <h2>⚠️ Risk Management Essentials</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">Anticipate problems before they become crises</p>
+    
+    <div class="grid">
+      <div class="card">
+        <span class="card-icon">🔍</span>
+        <strong>Identify Risks Early</strong>
+        <p>What could go wrong? Weather, tech failures, vendor delays, budget shortfalls</p>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">📊</span>
+        <strong>Assess Impact</strong>
+        <p>Rate each risk: High/Medium/Low probability × High/Medium/Low impact</p>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">🛡️</span>
+        <strong>Create Backup Plans</strong>
+        <p>Always have Plan B (and sometimes Plan C) ready to execute</p>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">👁️</span>
+        <strong>Monitor Continuously</strong>
+        <p>Regular check-ins to catch issues while they're still manageable</p>
+      </div>
+    </div>
+
+    <div class="quote">"The best project managers are professional worriers—they think through worst-case scenarios so their teams don't have to."</div>
+  </section>
+
+  <!-- Slide 10: Team Leadership -->
+  <section class="slide">
+    <h2>🌟 Leading Teams to Success</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">Great projects are built by great teams</p>
+    
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-number" style="background:linear-gradient(135deg, var(--success), var(--primary));">💪</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Empower, Don't Micromanage</strong>
+          <p>Give clear objectives, provide resources, then trust your team to deliver</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-number" style="background:linear-gradient(135deg, var(--warning), var(--accent));">🎯</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Celebrate Small Wins</strong>
+          <p>Recognition fuels motivation—acknowledge progress regularly</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-number" style="background:linear-gradient(135deg, var(--primary), var(--success));">🗣️</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Foster Psychological Safety</strong>
+          <p>Create an environment where people can raise concerns without fear</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-number" style="background:linear-gradient(135deg, var(--accent), var(--warning));">📈</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Develop Future Leaders</strong>
+          <p>Delegate meaningful responsibilities—grow your team's capabilities</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 11: Budget Management -->
+  <section class="slide">
+    <h2>💰 Budget Management Basics</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">Money management makes or breaks projects</p>
+    
+    <div class="grid">
+      <div class="card">
+        <span class="card-icon">📝</span>
+        <strong>Plan with Buffer</strong>
+        <p>Always add 15-20% contingency for unexpected costs</p>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">📊</span>
+        <strong>Track Everything</strong>
+        <p>Record every expense in real-time—no surprises later</p>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">✅</span>
+        <strong>Approval Process</strong>
+        <p>Define spending limits and who can approve what</p>
+      </div>
+      
+      <div class="card">
+        <span class="card-icon">🔍</span>
+        <strong>Regular Reviews</strong>
+        <p>Weekly budget check-ins prevent overspending</p>
+      </div>
+    </div>
+
+    <div class="stats" style="margin-top:2rem;">
+      <div class="stat-box">
+        <span class="stat-number">80%</span>
+        <span class="stat-label">Of projects go over budget</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">20%</span>
+        <span class="stat-label">Typical contingency buffer</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 12: Stakeholder Management -->
+  <section class="slide">
+    <h2>🤝 Managing Stakeholders</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">Keep everyone aligned and informed</p>
+    
+    <div class="comparison">
+      <div class="comparison-card">
+        <h3>🔑 Key Stakeholders</h3>
+        <ul>
+          <li>Decision-makers & sponsors</li>
+          <li>Weekly status updates</li>
+          <li>Focus on outcomes & ROI</li>
+          <li>Escalate only major issues</li>
+        </ul>
+      </div>
+      
+      <div class="comparison-card">
+        <h3>👥 Secondary Stakeholders</h3>
+        <ul>
+          <li>Supporting teams & vendors</li>
+          <li>Bi-weekly or monthly updates</li>
+          <li>Focus on coordination needs</li>
+          <li>Keep them informed, not involved</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="quote">"Manage expectations early and often—surprise stakeholders with good news, never bad news."</div>
+  </section>
+
+  <!-- Slide 13: Quality Control -->
+  <section class="slide">
+    <h2>✨ Quality Control Checklist</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">Excellence is in the details</p>
+    
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-number">✓</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Define Standards</strong>
+          <p>What does "done" look like? Set clear quality criteria upfront</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-number">✓</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Review Process</strong>
+          <p>Build in checkpoints—catch issues before they reach the audience</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-number">✓</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Test Everything</strong>
+          <p>Run through scenarios, check tech, do dry runs for events</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-number">✓</div>
+        <div class="timeline-content">
+          <strong style="font-size:1.4rem;color:var(--primary);display:block;margin-bottom:0.5rem;">Gather Feedback</strong>
+          <p>Post-event surveys reveal what worked and what didn't</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 14: Common Pitfalls -->
+  <section class="slide">
+    <h2>🚫 Common Pitfalls to Avoid</h2>
+    <p style="font-size:1.4rem;margin-bottom:2rem;">Learn from others' mistakes</p>
+    
+    <div class="grid">
+      <div class="card" style="border-color:var(--danger);">
+        <span class="card-icon">⏰</span>
+        <strong style="color:var(--danger);">Scope Creep</strong>
+        <p>Uncontrolled changes keep expanding the project. Solution: Formal change request process</p>
+      </div>
+      
+      <div class="card" style="border-color:var(--danger);">
+        <span class="card-icon">👥</span>
+        <strong style="color:var(--danger);">Unclear Roles</strong>
+        <p>No one knows who's responsible. Solution: RACI matrix (Responsible, Accountable, Consulted, Informed)</p>
+      </div>
+      
+      <div class="card" style="border-color:var(--danger);">
+        <span class="card-icon">📢</span>
+        <strong style="color:var(--danger);">Poor Communication</strong>
+        <p>Teams working in silos. Solution: Daily standups & shared dashboards</p>
+      </div>
+      
+      <div class="card" style="border-color:var(--danger);">
+        <span class="card-icon">🎯</span>
+        <strong style="color:var(--danger);">No Clear Success Metrics</strong>
+        <p>Can't measure if you succeeded. Solution: Define KPIs at project start</p>
+      </div>
+    </div>
+
+    <div class="quote">"Every failed project teaches more than a successful one—if you take time to analyze what went wrong."</div>
+  </section>
+
+  <!-- Slide 15: Closing -->
+  <section class="slide">
+    <h1>🎉 You're Ready to Lead with Confidence!</h1>
+    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_s2lryxtd.json" background="transparent" loop autoplay style="width:400px;height:400px;"></lottie-player>
+    
+    <div class="stats">
+      <div class="stat-box">
+        <span class="stat-number">🎯</span>
+        <span class="stat-label">Clear Systems</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">🤝</span>
+        <span class="stat-label">Strong Teams</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-number">📈</span>
+        <span class="stat-label">Continuous Growth</span>
+      </div>
+    </div>
+
+    <div class="quote" style="font-size:1.8rem;margin-top:2rem;">
+      "Consistency beats talent. Systems beat stress. Documentation beats memory."
+    </div>
+
+    <p style="margin-top:2rem;font-size:1.3rem;">Start small. Master the basics. Build your leadership toolkit one project at a time.</p>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button id="prev">◀</button>
+  <span id="counter">1 / 15</span>
+  <button id="next">▶</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const progressBar = document.getElementById('progressBar');
+  let current = 0;
+
+  function showSlide(n) {
+    // Remove active from current
+    slides[current].classList.remove('active');
+    
+    // Calculate new index
+    current = (n + slides.length) % slides.length;
+    
+    // Add active to new slide
+    slides[current].classList.add('active');
+    
+    // Update counter and progress bar
+    counter.textContent = `${current + 1} / ${slides.length}`;
+    const progress = ((current + 1) / slides.length) * 100;
+    progressBar.style.width = progress + '%';
+    
+    // Animate slide entrance with GSAP
+    gsap.from(slides[current].children, {
+      duration: 0.8,
+      opacity: 0,
+      y: 30,
+      stagger: 0.1,
+      ease: "power2.out"
+    });
+  }
+
+  // Navigation
+  document.getElementById('next').onclick = () => showSlide(current + 1);
+  document.getElementById('prev').onclick = () => showSlide(current - 1);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') showSlide(current + 1);
+    if (e.key === 'ArrowLeft') showSlide(current - 1);
+  });
+
+  // Theme initialization: apply stored preference if present, otherwise default to LIGHT.
+  function applyTheme(isDark) {
+    if (isDark) document.body.classList.add('dark');
+    else document.body.classList.remove('dark');
+
+    // subtle crossfade using GSAP for a smoother feel
+    gsap.to('body', { duration: 0.25, opacity: 1, ease: "power1.out" });
+  }
+
+  (function initTheme(){
+    try {
+      const stored = localStorage.getItem('theme');
+      const isDark = stored ? stored === 'dark' : false; // default light
+      document.body.style.opacity = 0.98;
+      applyTheme(isDark);
+    } catch (e) {
+      applyTheme(false);
+    }
+  })();
+
+  // Initialize progress bar
+  progressBar.style.width = ((current + 1) / slides.length) * 100 + '%';
+
+  // Add hover animations to cards
+  document.querySelectorAll('.card, .tool-card, .stat-box').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      gsap.to(this, {
+        duration: 0.3,
+        scale: 1.05,
+        ease: "power2.out"
+      });
+    });
+    
+    card.addEventListener('mouseleave', function() {
+      gsap.to(this, {
+        duration: 0.3,
+        scale: 1,
+        ease: "power2.out"
+      });
+    });
+  });
+
+  // Animate floating shapes
+  gsap.to('.floating-shape', {
+    duration: 20,
+    rotation: 360,
+    repeat: -1,
+    ease: "none"
+  });
+</script>
+
+</body>
+</html>

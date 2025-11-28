@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="384" viewBox="0 0 512 384">
+  <rect width="100%" height="100%" fill="#f3f4f6"/>
+  <g transform="translate(64,48)">
+    <rect x="0" y="0" width="384" height="288" rx="16" fill="#fff" stroke="#e5e7eb"/>
+    <path d="M64 96h256v32H64z" fill="#eaeefb"/>
+    <circle cx="96" cy="192" r="40" fill="#eef2ff"/>
+    <rect x="160" y="168" width="160" height="16" rx="4" fill="#eef2ff"/>
+    <rect x="160" y="192" width="120" height="12" rx="4" fill="#eef2ff"/>
+    <text x="192" y="52" font-family="Inter, Arial, sans-serif" font-size="20" fill="#374151">Certificate</text>
+  </g>
+</svg>
