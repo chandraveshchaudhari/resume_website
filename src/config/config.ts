@@ -6,32 +6,35 @@ export const getAsset = (path: string) => {
 
 const siteConfig = {
   personal: {
-    name: 'Put your name inside the quote',
-    title: 'Your Title | Your Role',
-    image: getAsset('images/profile.png'), // Customize or replace with your profile image
+    name: 'Manmeet Kaur Oberoi',
+    title: 'BSc Economics with Data Science | Undergraduate Student',
+    image: getAsset('images/manmeet.png'),
     description:
-      'Write a short bio here describing your background and focus. Keep it to 2–4 sentences.\n' +
+      'I am an undergraduate student pursuing a BSc in Economics with Data Science, with a strong interest in data analysis, programming, and business applications of technology.\n' +
       '\n' +
-      'Mention your institution or company, areas of interest, and what you teach or build.\n' +
+      'My academic focus lies at the intersection of economics, statistics, and Python-based data science, where I enjoy working with real-world datasets and problem-solving projects.\n' +
       '\n' +
-      'Summarize your education or certifications briefly and highlight your practical work.\n' +
-      '\n' +
-      'Optional: Add notable books, workshops, or training you deliver.',
-    tagline: 'Add a concise personal tagline here.',
-    location: 'Your City, Country',
+      'I am currently building my skills in data analytics, machine learning foundations, and research-oriented coursework through academic and self-driven projects.',
+    tagline: 'Exploring data, economics, and real-world insights.',
+    location: 'India',
   },
 
   seo: {
-    title: 'Your Name – Your Title',
-    description: "Portfolio website showcasing your education, research, projects, and experience.",
+    title: 'Manmeet Kaur – Economics & Data Science Portfolio',
+    description:
+      'Portfolio website showcasing academic background, projects, and interests in economics, data science, and business analytics.',
   },
 
-  animatedText: ['Your Role', 'Your Focus', 'Your Interest', 'Builder'],
+  animatedText: [
+    'Economics Student',
+    'Data Science Enthusiast',
+    'Python Learner',
+    'Aspiring Analyst',
+  ],
 
   navigation: [
     { name: 'Home', url: '/' },
     { name: 'Projects', url: '/projects' },
-    { name: 'Research', url: '/research' },
     { name: 'Education', url: '/education' },
     { name: 'Experience', url: '/experience' },
     { name: 'Blogs', url: '/blogs' },
@@ -39,120 +42,59 @@ const siteConfig = {
     { name: 'Contact', url: '/contact' },
   ],
 
-  // Static blog entries. Use getAsset so the URL respects NEXT_PUBLIC_BASE_PATH / next.config.basePath
-  // Add more entries here as you add more static HTML blog files under public/static_page/
-  blogs: [
-    {
-      title: 'Your Blog Title',
-      url: getAsset('static_page/project_management_blog.html'), // Replace with your static HTML page
-    },
-  ],
-
-
   education: [
     {
-      institution: 'Your Institution',
-      degree: 'Your Degree',
-      year: 'YYYY–YYYY',
+      institution: 'Christ University',
+      degree: 'BSc Economics with Data Science',
+      year: '2025 – Present',
       image: getAsset('images/education/placeholder.png'),
-      description: ['Brief description of your focus or thesis'],
-    },
-    {
-      institution: 'Another Institution',
-      degree: 'Another Degree or Certificate',
-      year: 'YYYY–YYYY',
-      image: getAsset('images/education/placeholder.png'),
-      description: ['Key topics or skills learned'],
-    },
-  ],
-
-// ✅ Unified MOOC + Certifications Section
-  certifications: [
-    {
-      title: 'Your Certificate or Specialization',
-      specialization: true,
-      file: getAsset('images/education/Certifications/download.svg'),
-      certificates: [
-        { name: 'Course 1', file: getAsset('images/education/Certifications/download.svg') },
-        { name: 'Course 2', file: getAsset('images/education/Certifications/download.svg') },
+      description: [
+        'Coursework includes economics, statistics, Python programming, and data analysis.',
       ],
     },
     {
-      title: 'Another Certificate',
-      file: getAsset('images/education/Certifications/download.svg'),
+      institution: 'Christ Academy Junior College',
+      degree: 'Class XII(PCMC)-90.2%',
+      year: '2023 – 2025',
+      image: getAsset('images/education/placeholder.png'),
+      description: [
+        'Studied Physics, Chemistry, Mathematics, and Computer Science.',
+      ],
+    },
+    {
+      institution: 'Christ Academy ICSE School',
+      degree: 'Class X-97.4%',
+      year: '2015 – 2023',
     },
   ],
 
-
-
-  // ✅ Experience section updated
+  // ✅ Certifications (keep minimal for now
   experience: [
     {
-      title: 'Your Role',
-      cardImage: getAsset('images/experience/placeholder.png'),
-      place: 'Your Organization',
-      time: '(MMM YYYY – Present)',
-      desp: ['Brief responsibility 1', 'Brief responsibility 2'],
-    },
-    {
-      title: 'Previous Role',
-      cardImage: getAsset('images/experience/placeholder.png'),
-      place: 'Previous Organization',
-      time: '(MMM YYYY – MMM YYYY)',
-      desp: ['Key contribution 1', 'Key contribution 2'],
+      title: 'Volunteer',
+      place: 'Snehasadan Boys Home NGO',
+      time: '(2025 – Present)',
     },
   ],
 
-
-  // ✅ Projects section updated
   projects: [
     {
-      title: 'Project Title 1',
-      cardImage: getAsset('images/project/placeholder.png'),
-      description: 'Short description of your project and what it does...',
-      Githublink: 'https://github.com/your-username/your-project',
-    },
-    {
-      title: 'Project Title 2',
-      cardImage: getAsset('images/project/placeholder.png'),
-      description: 'Another project summary...',
-      Githublink: 'https://github.com/your-username/another-project',
+      title: 'Socio-Economic Data Analysis (Punjab)',
+      description:
+        'Analyzed long-term secondary data on GDP, literacy rate, crime rate, and infant mortality using Excel-based visualizations.',
     },
   ],
 
+  research: [], // Leave empty as a student (this is totally okay)
 
-  research: [
-    {
-      title: 'Your Paper or Research Title',
-      authors: 'Your Name, Collaborator Name',
-      conferences: 'Conference or Journal, Publisher',
-      researchYr: 2024,
-  image: getAsset('images/research/placeholder.png'),
-      citation: {
-        vancouver:
-          'Author A, Author B. Title of the work. Venue, Year. DOI/URL.',
-      },
-      abstract:
-        'One or two sentences summarizing the contribution...',
-      link: 'https://example.com/your-publication',
-    },
-  ],
-
-  books: [
-    {
-      title: 'Your Book Title',
-      description: 'Short description of your book or resource.',
-      image: getAsset('images/book_cover_placeholder.png'),
-      link: 'https://example.com/your-book',
-    },
-  ],
+  books: [], // Not needed at undergraduate level
 
   contact: {
-    email: 'your.email@example.com',
-    linkedin: 'https://www.linkedin.com/in/your-linkedin/',
+    email: 'manmeetkaur9777@gmail.com', // replace if you want
+    linkedin: 'https://www.linkedin.com/in/manmeet-840355376/',
     github: 'https://github.com/your-username',
-    googleScholar: 'https://scholar.google.com/citations?user=YOURID',
-    orcid: 'https://orcid.org/0000-0000-0000-0000',
+    googleScholar: '',
+    orcid: '',
   },
 };
 
