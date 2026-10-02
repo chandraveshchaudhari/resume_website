@@ -4,6 +4,8 @@
     "title": "Your Title | Your Role",
     "tagline": "Add a concise personal tagline here.",
     "location": "Your City, Country",
+    "phone": "+00 0000000000",
+    "website": "https://your-website.example.com",
     "email": "your.email@example.com",
     "linkedin": "https://www.linkedin.com/in/your-linkedin/",
     "github": "https://github.com/your-username",
@@ -16,16 +18,24 @@
       "Your Role",
       "Your Focus",
       "Your Interest",
-      "Builder"
+      "Builder",
+      "Headline (Industry): Applied Scientist | Multimodal AI · AutoML · LLMs & RAG · Financial ML",
+      "Headline (Academic): AI & Machine Learning Researcher | Financial Analytics | Business Analytics"
     ]
   },
-  "summary": {},
+  "summary": {
+    "industry": "Applied AI/ML researcher and founder with a PhD in Multimodal Machine Learning. Builds research-driven AI systems end to end: Brain-AI, an open-source multimodal AutoML engine; LitSynth, a RAG-based research-intelligence system; and InstantGrade, an automated evaluation tool on PyPI. Works across PyTorch, LLMs and RAG, agentic workflows, multimodal fusion, and rigorous model evaluation, with reproducible pipelines on Airflow/MLflow. PhD research on stock-price prediction fusing tabular financial indicators, time-series data, and LLM-generated sentiment; publications and patent applications spanning multimodal AutoML, feature selection, and financial machine learning.",
+    "academic": "Assistant Professor at CHRIST (Deemed to be University), Bangalore, working at the intersection of Artificial Intelligence, Machine Learning, and Finance. Holds a PhD in Multimodal Machine Learning — thesis on stock-price prediction using multimodal fusion of financial indicators, time-series data, and LLM-generated sentiment — together with a Master of Commerce in Finance. Teaches Business Analytics, Python, Machine Learning, Artificial Intelligence, and Predictive Analytics; publishes research in financial machine learning and volatility forecasting; and mentors student research and industry-linked projects through university–industry consultancy."
+  },
   "experience": [
     {
       "__name": "Your Role",
       "__title": "Your Role",
       "place": "Your Organization",
       "time": "(MMM YYYY – Present)",
+      "kind": "industry",
+      "industryPriority": 1,
+      "academicPriority": 1,
       "cardImage": "images/experience/placeholder.png",
       "desp": [
         "Brief responsibility 1",
@@ -33,10 +43,26 @@
       ]
     },
     {
+      "__name": "Teaching Assistant (optional)",
+      "__title": "Teaching Assistant (optional)",
+      "place": "Your Organization",
+      "time": "(MMM YYYY – MMM YYYY)",
+      "kind": "teaching",
+      "industryPriority": 99,
+      "academicPriority": 1,
+      "cardImage": "images/experience/placeholder.png",
+      "desp": [
+        "Supported instruction or mentoring activities."
+      ]
+    },
+    {
       "__name": "Previous Role",
       "__title": "Previous Role",
       "place": "Previous Organization",
       "time": "(MMM YYYY – MMM YYYY)",
+      "kind": "industry",
+      "industryPriority": 2,
+      "academicPriority": 2,
       "cardImage": "images/experience/placeholder.png",
       "desp": [
         "Key contribution 1",
@@ -48,14 +74,36 @@
     {
       "__name": "Project Title 1",
       "__title": "Project Title 1",
+      "role": "Your role",
+      "tech": [
+        "Tech One",
+        "Tech Two"
+      ],
       "Githublink": "https://github.com/your-username/your-project",
-      "description": "Short description of your project and what it does..."
+      "industryPriority": 1,
+      "academicPriority": 1,
+      "description": "Short description of your project and what it does...",
+      "highlights": [
+        "Key highlight one",
+        "Key highlight two"
+      ]
     },
     {
       "__name": "Project Title 2",
       "__title": "Project Title 2",
+      "role": "Your role",
+      "tech": [
+        "Tech One",
+        "Tech Three"
+      ],
       "Githublink": "https://github.com/your-username/another-project",
-      "description": "Another project summary..."
+      "industryPriority": 2,
+      "academicPriority": 2,
+      "description": "Another project summary...",
+      "highlights": [
+        "Key highlight one",
+        "Key highlight two"
+      ]
     }
   ],
   "publications": [
@@ -66,12 +114,27 @@
       "conferences": "Conference or Journal, Publisher",
       "researchYr": 2024,
       "link": "https://example.com/your-publication",
+      "industryPriority": 1,
+      "academicPriority": 1,
       "abstract": "One or two sentences summarizing the contribution...",
       "citation": "Author A, Author B. Title of the work. Venue, Year. DOI/URL.",
       "image": "images/research/placeholder.png"
     }
   ],
-  "patents": [],
+  "patents": [
+    {
+      "__name": "Your Patent Title",
+      "__title": "Your Patent Title",
+      "status": "Patent application status (filed / published / granted)",
+      "year": "2026",
+      "applicationNo": "000000000000",
+      "inventors": [
+        "Your Name"
+      ],
+      "industryPriority": 1,
+      "academicPriority": 1
+    }
+  ],
   "education": [
     {
       "__name": "Your Institution",
@@ -79,7 +142,10 @@
       "institution": "Your Institution",
       "degree": "Your Degree",
       "year": "YYYY–YYYY",
+      "thesisTitle": "Your Thesis Title (optional)",
       "image": "images/education/placeholder.png",
+      "industryPriority": 1,
+      "academicPriority": 1,
       "description": [
         "Brief description of your focus or thesis"
       ]
@@ -91,6 +157,8 @@
       "degree": "Another Degree or Certificate",
       "year": "YYYY–YYYY",
       "image": "images/education/placeholder.png",
+      "industryPriority": 2,
+      "academicPriority": 2,
       "description": [
         "Key topics or skills learned"
       ]
@@ -102,6 +170,8 @@
       "__title": "Your Certificate or Specialization",
       "specialization": true,
       "file": "images/education/Certifications/download.svg",
+      "industryPriority": 1,
+      "academicPriority": 1,
       "certificates": [
         {
           "name": "Course 1",
@@ -116,13 +186,55 @@
     {
       "__name": "Another Certificate",
       "__title": "Another Certificate",
-      "file": "images/education/Certifications/download.svg"
+      "file": "images/education/Certifications/download.svg",
+      "industryPriority": 2,
+      "academicPriority": 2
     }
   ],
-  "openSource": [],
-  "openSourceContributions": [],
-  "industryEngagements": [],
-  "thesis": {},
+  "openSource": [
+    {
+      "__name": "Your Open Source Project",
+      "__title": "Your Open Source Project",
+      "github": "https://github.com/your-username/your-repo",
+      "website": "https://your-project.example.com",
+      "pip": "pip install your-package",
+      "description": "One-line description of the project.",
+      "industryPriority": 1,
+      "academicPriority": 1,
+      "features": [
+        "Feature one",
+        "Feature two"
+      ]
+    }
+  ],
+  "openSourceContributions": [
+    {
+      "__name": "Project name (contribution)",
+      "__title": "Project name (contribution)",
+      "project": "Project name (contribution)",
+      "repo": "https://github.com/external/repo",
+      "note": "What you contributed."
+    }
+  ],
+  "industryEngagements": [
+    {
+      "__name": "Company — Consultancy or Engagement (via Organization)",
+      "__title": "Company — Consultancy or Engagement (via Organization)",
+      "header": "Company — Consultancy or Engagement (via Organization)",
+      "desp": [
+        "What you did in this engagement.",
+        "Outcome or impact."
+      ]
+    }
+  ],
+  "thesis": {
+    "title": "Your Thesis Title",
+    "authors": "Your Name",
+    "year": "2026",
+    "institution": "Your Institution",
+    "link": "https://example.com/thesis",
+    "citation": "Your Name (2026). Your Thesis Title. PhD Thesis, Institution."
+  },
   "books": [
     {
       "__name": "Your Book Title",
@@ -133,13 +245,333 @@
       "image": "images/book_cover_placeholder.png"
     }
   ],
-  "skills": [],
-  "courses": [],
-  "researchAreas": [],
-  "aiFinance": [],
+  "skills": [
+    {
+      "__name": "Programming",
+      "__title": "Programming",
+      "skills": [
+        "Python",
+        "SQL",
+        "C",
+        "Java",
+        "Bash",
+        "TypeScript",
+        "R"
+      ]
+    },
+    {
+      "__name": "ML / AI",
+      "__title": "ML / AI",
+      "skills": [
+        "Machine Learning",
+        "Deep Learning",
+        "Multimodal Learning",
+        "AutoML",
+        "PyTorch",
+        "TensorFlow",
+        "Scikit-learn",
+        "Hugging Face",
+        "Feature Engineering",
+        "Fusion Modeling",
+        "Model Evaluation",
+        "Experimentation & Ablation"
+      ]
+    },
+    {
+      "__name": "LLM / Generative AI",
+      "__title": "LLM / Generative AI",
+      "skills": [
+        "LLMs",
+        "RAG",
+        "Local LLMs (Ollama)",
+        "LangChain",
+        "Agentic AI",
+        "AI Evaluation"
+      ]
+    },
+    {
+      "__name": "Data",
+      "__title": "Data",
+      "skills": [
+        "Pandas",
+        "NumPy",
+        "PySpark",
+        "Time Series",
+        "Data Visualization",
+        "Large-Scale Data Processing"
+      ]
+    },
+    {
+      "__name": "Engineering & MLOps",
+      "__title": "Engineering & MLOps",
+      "skills": [
+        "FastAPI",
+        "Docker",
+        "Kubernetes",
+        "Apache Airflow",
+        "MLflow",
+        "DVC",
+        "Git",
+        "APIs",
+        "Pipeline Design"
+      ]
+    },
+    {
+      "__name": "Finance & Analytics",
+      "__title": "Finance & Analytics",
+      "skills": [
+        "Financial Machine Learning",
+        "Stock Market Prediction",
+        "Financial Forecasting",
+        "Volatility Modelling",
+        "Financial Risk Analytics",
+        "Portfolio Analytics",
+        "Financial Markets",
+        "Quantitative Analytics",
+        "Business Analytics",
+        "Security Analysis"
+      ]
+    }
+  ],
+  "courses": [
+    {
+      "__name": "Business Analytics",
+      "__title": "Business Analytics",
+      "status": "taught",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Python",
+      "__title": "Python",
+      "status": "taught",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Machine Learning",
+      "__title": "Machine Learning",
+      "status": "taught",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Artificial Intelligence",
+      "__title": "Artificial Intelligence",
+      "status": "taught",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Predictive Analytics",
+      "__title": "Predictive Analytics",
+      "status": "taught",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Data Analytics",
+      "__title": "Data Analytics",
+      "status": "taught",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Advanced Programming in Python",
+      "__title": "Advanced Programming in Python",
+      "status": "canTeach",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Introduction to Artificial Intelligence",
+      "__title": "Introduction to Artificial Intelligence",
+      "status": "canTeach",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Big Data Analytics",
+      "__title": "Big Data Analytics",
+      "status": "canTeach",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Neural Networks",
+      "__title": "Neural Networks",
+      "status": "canTeach",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Data Visualization",
+      "__title": "Data Visualization",
+      "status": "canTeach",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "R Programming",
+      "__title": "R Programming",
+      "status": "canTeach",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Social Media Analytics",
+      "__title": "Social Media Analytics",
+      "status": "canTeach",
+      "area": "ai-analytics"
+    },
+    {
+      "__name": "Sustainable Finance & Responsible Investment",
+      "__title": "Sustainable Finance & Responsible Investment",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Fixed Income Markets",
+      "__title": "Fixed Income Markets",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Urban Economics",
+      "__title": "Urban Economics",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Banking and FinTech",
+      "__title": "Banking and FinTech",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Mergers and Acquisitions",
+      "__title": "Mergers and Acquisitions",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Financial Risk Management",
+      "__title": "Financial Risk Management",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Global Business Environment",
+      "__title": "Global Business Environment",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Project Finance and Infrastructure Financing",
+      "__title": "Project Finance and Infrastructure Financing",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Strategic Financial Management",
+      "__title": "Strategic Financial Management",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Security Analysis and Portfolio Management",
+      "__title": "Security Analysis and Portfolio Management",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Portfolio Management",
+      "__title": "Portfolio Management",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Management Accounting",
+      "__title": "Management Accounting",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Financial Statement Analysis",
+      "__title": "Financial Statement Analysis",
+      "status": "canTeach",
+      "area": "finance-business"
+    },
+    {
+      "__name": "Econometrics",
+      "__title": "Econometrics",
+      "status": "canTeach",
+      "area": "finance-business"
+    }
+  ],
+  "researchAreas": {
+    "areas": [
+      {
+        "name": "Applied Machine Learning",
+        "primary": true,
+        "academic": true
+      },
+      "Multimodal Machine Learning",
+      "AutoML",
+      "Financial Machine Learning",
+      "Financial Forecasting",
+      "Financial Volatility Forecasting",
+      {
+        "name": "AI for Finance",
+        "academic": true
+      },
+      "Large Language Models (LLMs)",
+      "Retrieval-Augmented Generation (RAG)",
+      {
+        "name": "Research Intelligence",
+        "academic": true
+      },
+      {
+        "name": "AI Evaluation",
+        "academic": true
+      },
+      {
+        "name": "Agentic AI",
+        "academic": true
+      },
+      "Decision-level and meta-fusion for multimodal learning",
+      "Temporal alignment and multi-scale modeling for financial time-series",
+      "Representation learning for heterogeneous tabular data",
+      "Hybrid feature selection with LLM-guided priors",
+      "Tabular foundation models",
+      "Efficiency and edge-deployable multimodal systems",
+      "Local LLM integration",
+      {
+        "name": "Information-theoretic analysis of fusion and ensembles",
+        "academic": true
+      }
+    ]
+  },
+  "aiFinance": {
+    "items": [
+      "Financial Machine Learning",
+      "Stock Market Prediction",
+      "Financial Forecasting",
+      "Financial Volatility Modelling",
+      "Financial Risk Analytics",
+      "Portfolio Analytics",
+      "Financial Sentiment Analysis",
+      "AI for FinTech",
+      "AI-assisted Financial Decision Making",
+      "Machine Learning for Financial Markets",
+      "Quantitative Analytics",
+      "Business Analytics"
+    ]
+  },
   "awards": [],
   "references": [],
   "copyrights": [],
   "additionalDesignWork": [],
-  "resumeVersions": {}
+  "resumeVersions": {
+    "industry": {
+      "__title": "Industry",
+      "label": "Industry — AI / Applied Scientist",
+      "tagline": "Applied Scientist · Applied Research Scientist · ML Engineer · AI Engineer · Research Engineer. Leads with systems, benchmarks, and engineering evidence.",
+      "footerNote": "Founder, SolarpunkWorks Pvt Ltd"
+    },
+    "academic": {
+      "__title": "Academic",
+      "label": "Academic — AI + Finance / Business Analytics",
+      "tagline": "Assistant Professor · Faculty — AI/ML · Business Analytics · FinTech · Data Science. Leads with the AI × Finance intersection, teaching, and publications.",
+      "footerNote": "Founder, SolarpunkWorks Pvt Ltd"
+    }
+  }
 }
