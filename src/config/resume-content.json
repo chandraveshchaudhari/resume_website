@@ -1,0 +1,145 @@
+{
+  "personal": {
+    "name": "Put your name inside the quote",
+    "title": "Your Title | Your Role",
+    "tagline": "Add a concise personal tagline here.",
+    "location": "Your City, Country",
+    "email": "your.email@example.com",
+    "linkedin": "https://www.linkedin.com/in/your-linkedin/",
+    "github": "https://github.com/your-username",
+    "googleScholar": "https://scholar.google.com/citations?user=YOURID",
+    "orcid": "https://orcid.org/0000-0000-0000-0000",
+    "image": "images/profile.png",
+    "seoTitle": "Your Name – Your Title",
+    "seoDescription": "Portfolio website showcasing your education, research, projects, and experience.",
+    "animatedText": [
+      "Your Role",
+      "Your Focus",
+      "Your Interest",
+      "Builder"
+    ]
+  },
+  "summary": {},
+  "experience": [
+    {
+      "__name": "Your Role",
+      "__title": "Your Role",
+      "place": "Your Organization",
+      "time": "(MMM YYYY – Present)",
+      "cardImage": "images/experience/placeholder.png",
+      "desp": [
+        "Brief responsibility 1",
+        "Brief responsibility 2"
+      ]
+    },
+    {
+      "__name": "Previous Role",
+      "__title": "Previous Role",
+      "place": "Previous Organization",
+      "time": "(MMM YYYY – MMM YYYY)",
+      "cardImage": "images/experience/placeholder.png",
+      "desp": [
+        "Key contribution 1",
+        "Key contribution 2"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "__name": "Project Title 1",
+      "__title": "Project Title 1",
+      "Githublink": "https://github.com/your-username/your-project",
+      "description": "Short description of your project and what it does..."
+    },
+    {
+      "__name": "Project Title 2",
+      "__title": "Project Title 2",
+      "Githublink": "https://github.com/your-username/another-project",
+      "description": "Another project summary..."
+    }
+  ],
+  "publications": [
+    {
+      "__name": "Your Paper or Research Title",
+      "__title": "Your Paper or Research Title",
+      "authors": "Your Name, Collaborator Name",
+      "conferences": "Conference or Journal, Publisher",
+      "researchYr": 2024,
+      "link": "https://example.com/your-publication",
+      "abstract": "One or two sentences summarizing the contribution...",
+      "citation": "Author A, Author B. Title of the work. Venue, Year. DOI/URL.",
+      "image": "images/research/placeholder.png"
+    }
+  ],
+  "patents": [],
+  "education": [
+    {
+      "__name": "Your Institution",
+      "__title": "Your Institution",
+      "institution": "Your Institution",
+      "degree": "Your Degree",
+      "year": "YYYY–YYYY",
+      "image": "images/education/placeholder.png",
+      "description": [
+        "Brief description of your focus or thesis"
+      ]
+    },
+    {
+      "__name": "Another Institution",
+      "__title": "Another Institution",
+      "institution": "Another Institution",
+      "degree": "Another Degree or Certificate",
+      "year": "YYYY–YYYY",
+      "image": "images/education/placeholder.png",
+      "description": [
+        "Key topics or skills learned"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "__name": "Your Certificate or Specialization",
+      "__title": "Your Certificate or Specialization",
+      "specialization": true,
+      "file": "images/education/Certifications/download.svg",
+      "certificates": [
+        {
+          "name": "Course 1",
+          "file": "images/education/Certifications/download.svg"
+        },
+        {
+          "name": "Course 2",
+          "file": "images/education/Certifications/download.svg"
+        }
+      ]
+    },
+    {
+      "__name": "Another Certificate",
+      "__title": "Another Certificate",
+      "file": "images/education/Certifications/download.svg"
+    }
+  ],
+  "openSource": [],
+  "openSourceContributions": [],
+  "industryEngagements": [],
+  "thesis": {},
+  "books": [
+    {
+      "__name": "Your Book Title",
+      "__title": "Your Book Title",
+      "title": "Your Book Title",
+      "description": "Short description of your book or resource.",
+      "link": "https://example.com/your-book",
+      "image": "images/book_cover_placeholder.png"
+    }
+  ],
+  "skills": [],
+  "courses": [],
+  "researchAreas": [],
+  "aiFinance": [],
+  "awards": [],
+  "references": [],
+  "copyrights": [],
+  "additionalDesignWork": [],
+  "resumeVersions": {}
+}

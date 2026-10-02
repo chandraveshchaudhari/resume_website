@@ -11,7 +11,7 @@
 
 | Category | Feature | Why it Matters |
 |----------|---------|----------------|
-| Identity | Central config (`src/config/config.ts`) | Change everything (name, projects, research, education, contact) in one place |
+| Identity | **One markdown file** (`resume.md`) | Change everything (name, projects, research, education, contact) by editing plain text — no code |
 | Resume | "Download PDF" button | One click printable/exportable resume (uses in-browser PDF print) |
 | Portfolio Sections | Projects, Research, Education, Experience, Books, Certifications, Blog | Structured professional presence |
 | Branding | Animated role text | Eye-catching hero animation for your roles/interests |
@@ -39,14 +39,14 @@ If you can edit text, you can publish this site.
 ### OPTION 1: Use as a GitHub Template (Fastest)
 1. Click "Use this template" on the repository page.
 2. Name your new repo (e.g., `my-portfolio`).
-3. Open `src/config/config.ts` directly in GitHub and replace placeholders.
+3. Open `resume.md` directly in GitHub and replace placeholders (see `RESUME_GUIDE.md`).
 4. Enable GitHub Pages (Settings → Pages → Deploy from GitHub Actions or `gh-pages` branch if you use an action).
 5. Share your live URL: `https://your-username.github.io/my-portfolio/`.
 
 ### OPTION 2: Download ZIP (No Git Needed)
 1. Click "Code" → "Download ZIP".
 2. Unzip and open the folder.
-3. Edit `src/config/config.ts` in any text editor (VS Code, Notepad, etc.).
+3. Edit `resume.md` in any text editor (VS Code, Notepad, etc.) — see `RESUME_GUIDE.md`.
 4. (Optional) Deploy by uploading the built `out/` folder later (see Deployment section).
 
 ### OPTION 3: Fork & Customize Locally
@@ -59,7 +59,7 @@ If you can edit text, you can publish this site.
 
 ## ✨ What You Change (One File Only)
 
-Open: `src/config/config.ts`
+Open: `resume.md` (format reference: `RESUME_GUIDE.md`)
 
 You only have to change the text inside the quotes. Example:
 
@@ -140,7 +140,7 @@ This uses in-browser print to produce a clean PDF including:
 - Research
 - Books
 
-Edit any content in `config.ts` and it updates instantly. No external service required.
+Edit any content in `resume.md` and it updates instantly. No external service required.
 
 Tip: After printing, review margins and save. Works in all major browsers.
 
@@ -172,7 +172,7 @@ npm run dev
 
 Visit: http://localhost:3000
 
-Edit `src/config/config.ts` → refresh browser → see changes.
+Edit `resume.md` → `npm run dev` (or rebuild) → see changes.
 
 ---
 
